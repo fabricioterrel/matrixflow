@@ -36,18 +36,11 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://matrixflow-2-0.onrender.com",
-]
-
+# Configuración universal de CORS para admitir todos los dominios de Vercel
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
