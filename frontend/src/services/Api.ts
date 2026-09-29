@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://127.0.0.1:8000/api/v1';
+// Detecta la URL de producción (Render) desde Vercel o usa localhost para entorno local
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
+// Elimina barras diagonales al final si las hubiera y añade el prefijo /api/v1
+const API_BASE_URL = `${BASE_URL.replace(/\/$/, '')}/api/v1`;
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
